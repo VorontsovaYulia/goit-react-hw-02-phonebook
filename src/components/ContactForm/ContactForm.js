@@ -9,16 +9,20 @@ const nameId = nanoid();
     <Formik
       initialValues={{
         name: '',
+        number: ''
       }}
-      onSubmit={values => {
+
+      onSubmit={(values, actions) => {
         addContact({
-          name: values.name,
           id: nameId,
+          name: values.name,
+          number: values.number
         })
+        actions.resetForm();
       }}
     >
       <Form>
-        <label>First Name
+        <label>Name
           <Field
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -26,7 +30,16 @@ const nameId = nanoid();
           required
           />
         </label>
-        <button type="submit">Submit</button>
+        <label>Number
+          <Field
+          type="tel"
+          name="number"
+          pattern="\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          />
+        </label>
+        <button type="submit">Add contact</button>
       </Form>
     </Formik>
     )
