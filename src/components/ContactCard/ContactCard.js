@@ -1,5 +1,8 @@
-export const ContactCard = ({ item: { name, number } }) => {
+export const ContactCard = ({ item: { id, name, number }, onDelete }) => {
     return (
-        <p>{name}: {number}</p>
+        <div>
+            <p>{name}: {number}</p>
+            <button onClick={()=> onDelete(id)}>Delete</button>
+        </div>
     )
 }

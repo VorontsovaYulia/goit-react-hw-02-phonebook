@@ -17,6 +17,14 @@ export class App extends Component {
   }
 
   addContact = contact => {
+    
+   this.state.contacts.find(el => {
+     
+     if (el.name === contact.name) {
+  alert(`${el.name} is already in contacts.`);
+  return
+}
+    }) 
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contact]
@@ -30,8 +38,17 @@ export class App extends Component {
     })
   }
 
+  handleDelete = (cardId) => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(el=> el.id !== cardId)
+      }
+    })
+
+  }
+
   render() { 
-    const filterContacts = this.state.contacts.filter(({ name }) => name.toLowerCase().includes(this.state.filter));
+    const filterContacts = this.state.contacts.filter(({ name }) => name.toLowerCase().includes(this.state.filter.toLowerCase()));
       
     return (
         <div>
@@ -39,7 +56,7 @@ export class App extends Component {
           <ContactForm addContact={this.addContact} />
           <h2>Contacts</h2>
           <Filter filter={this.getFilter} />
-          <ContactList listFilter={filterContacts} />
+        <ContactList listFilter={filterContacts} onDelete={this.handleDelete} />
           <GlobalStyle />
         </div>
       );
