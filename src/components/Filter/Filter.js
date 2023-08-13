@@ -1,12 +1,14 @@
-export const Filter = ({filter}) => {
+import { StyledLabel, StyledInput } from "./Filter.styled"
+
+export const Filter = ({ filter }) => {
     
    const handleFilter = (evt) => {
        filter(evt.currentTarget.value)
     }
         return (
-            <label>Find contacts by name
-                <input onChange={handleFilter} name="filter" />
-            </label>
+            <StyledLabel>Find contacts by name
+                <StyledInput onChange={handleFilter} name="filter" />
+            </StyledLabel>
         )    
 }
 
