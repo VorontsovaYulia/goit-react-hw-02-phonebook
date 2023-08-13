@@ -28,7 +28,7 @@ const nameId = nanoid();
           <Field
           type="text"
           name="name"
-          pattern="^[a-zA-Z]+$"
+          pattern="^[а-яА-ЯёЁa-zA-Z\s]+$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           />
